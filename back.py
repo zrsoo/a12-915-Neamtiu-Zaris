@@ -88,6 +88,31 @@ def recursive_back(k, s, li_numbers):
             s.pop()
 
 
+def next_element(li_numbers, index):
+    if index + 1 < len(li_numbers):
+        return li_numbers[index + 1], index + 1
+    return None, None
+
+
+def iterative_back(li_numbers):
+    stack = [[]]
+    while len(stack):
+        index = 0
+        element = li_numbers[index]
+        result = stack.pop()
+        result.append(element)
+
+        while element is not None:
+            result[-1] = element
+            if ok(len(result) - 1, result):
+                if sol(result, len(result) - 1):
+                    write(result, len(result) - 1)
+                    stack.append(result[:])
+                else:
+                    stack.append((result[:]))
+            element, index = next_element(li_numbers, index)
+
+
 if __name__ == "__main__":
     li_numbers = input("Numbers: ")
 
@@ -98,4 +123,4 @@ if __name__ == "__main__":
 
     s = []
 
-    recursive_back(0, s, li_numbers)
+    iterative_back(li_numbers)
