@@ -83,6 +83,7 @@ def recursive_back(k, s, li_numbers):
             # else:
                 # print(s)
             recursive_back(k + 1, s, li_numbers)
+            s.pop()
         else:
             s.pop()
 
